@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stage One Task HNG</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <h1 data-testid="slackUserName">Oyelami Matthew</h1>
+    <img data-testid="slackDisplayImage" src="img\Profilepic.jpg" alt="Oyelami Matthew" class="picture">
+  <hr>
+  <p class="dayOfTheWeek" data-testid="currentDayOfTheWeek">
+  <h3>
+    Monday
+  </h3>
+  </p>
+  
+  <p class="utc_time" data-testid="currentUTCTime">
+  <h3>
+    UTC time
+  </h3>
+  </p>
+
+  <p class="track" data-testid="myTrack">
+  <h3>
+    Frontend
+  </h3>
+  </p>
+
+  <button class='btn'><a data-testid="githubURL" href="https://github.com/Oyematth01/HNG_Stage_One" target="_blank"><h4>
+    The Github repo
+  </h4></a></button>
+
+
+    <script src="./script.js"></script>
+  </body>
+</html>

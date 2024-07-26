@@ -11,4 +11,5 @@ fi
 USER=$1
 
 # Run the whoami command as the specified user
-su -c whoami $USER
+su -c whoami "$USER"
+

@@ -4,6 +4,4 @@ sed -i 's/^user .*/user nginx;/' /etc/nginx/nginx.conf
 sed -i 's/listen 80 default_server;/listen 8080 default_server;/' /etc/nginx/sites-available/default
 sed -i 's/listen \[::\]:80 default_server;/listen \[::\]:8080 default_server;/' /etc/nginx/sites-available/default
 service nginx restart
-pgrep -u nginx -x nginx > /dev/null && echo "Nginx is running as nginx user"
-nc -z 0 8080 && echo "Nginx is listening on port 8080"
 

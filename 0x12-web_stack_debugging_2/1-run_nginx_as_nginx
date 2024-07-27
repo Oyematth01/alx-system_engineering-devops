@@ -12,6 +12,15 @@ sed -i 's/listen \[::\]:80 default_server;/listen \[::\]:8080 default_server;/' 
 service nginx restart
 
 # Check if Nginx is running as the nginx user and listening on port 8080
-pgrep aux | grep '[n]ginx'
-nc -z 0 8080 && echo "Nginx is running and listening on port 8080" || echo "Nginx is not running on port 8080"
+if ps aux | grep -v grep | grep -q "nginx: master process"; then
+    echo "Nginx is running as nginx user"
+else
+    echo "Nginx is not running as nginx user"
+fi
+
+if nc -z 0 8080; then
+    echo "Nginx is listening on port 8080"
+else
+    echo "Nginx is not listening on port 8080"
+fi
 

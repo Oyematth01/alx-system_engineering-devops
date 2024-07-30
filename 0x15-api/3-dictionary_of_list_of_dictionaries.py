@@ -1,42 +1,26 @@
 #!/usr/bin/python3
-
 import json
 import requests
 
+url_users = 'https://jsonplaceholder.typicode.com/users'
+url_todos = 'https://jsonplaceholder.typicode.com/todos'
 
-def fetch_and_export_tasks():
-    # API URLs
-    users_url = "https://jsonplaceholder.typicode.com/users"
-    todos_url = "https://jsonplaceholder.typicode.com/todos"
-    # Fetch data from APIs
-    users_response = requests.get(users_url)
-    todos_response = requests.get(todos_url)
+users = requests.get(url_users).json()
+todos = requests.get(url_todos).json()
 
-    if users_response.status_code != 200 or todos_response.status_code != 200:
-        raise Exception("Error fetching data from API")
+data = {}
+for user in users:
+    user_id = user['id']
+    username = user['username']
+    tasks = [
+        {
+            "username": username,
+            "task": task['title'],
+            "completed": task['completed']
+        }
+        for task in todos if task['userId'] == user_id
+    ]
+    data[user_id] = tasks
 
-    users = users_response.json()
-    todos = todos_response.json()
-
-    # Dictionary to store tasks per user
-    tasks_dict = {}
-    # Process users and tasks
-    for user in users:
-        user_id = user['id']
-        username = user['username']
-        user_tasks = [
-            {
-                "username": username,
-                "task": todo["title"],
-                "completed": todo["completed"]
-            }
-            for todo in todos if todo["userId"] == user_id
-        ]
-        tasks_dict[user_id] = user_tasks
-    # Export to JSON file
-    with open("todo_all_employees.json", "w") as json_file:
-        json.dump(tasks_dict, json_file)
-
-
-# Execute the function
-fetch_and_export_tasks()
+with open('todo_all_employees.json', 'w') as f:
+    json.dump(data, f)

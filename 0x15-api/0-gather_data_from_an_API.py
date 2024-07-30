@@ -22,7 +22,7 @@ def get_employee_todo_progress(employee_id):
             print(f"User with ID {employee_id} not found.")
             return
 
-        employee_name = user_data.get('name')
+        employee_name = user_data.get('name').strip()
 
         # Fetch TODO list for the employee
         todos_url = (
